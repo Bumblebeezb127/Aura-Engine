@@ -5,6 +5,7 @@
 #include<memory>
 #include "Core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 
 namespace Aura {
 	class AURA_API Log
