@@ -8,6 +8,11 @@ workspace "AuraEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Aura/vendor/GLFW/include"
+
+include "Aura/vendor/GLFW"
 
 project "Aura"
 	location "Aura"
@@ -17,13 +22,22 @@ project "Aura"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "arpch.h"
+	pchsource "Aura/src/arpch.cpp"
+
 	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
 	includedirs {
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links {
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -43,12 +57,15 @@ project "Aura"
 
 	filter "configurations:Debug"
 		defines "AR_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 	filter "configurations:Release"
 		defines "AR_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 	filter "configurations:Dist"
 		defines "AR_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter {"system:windows","configurations:Release"}

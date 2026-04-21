@@ -2,7 +2,7 @@
 
 #include "Event.h"
 
-#include<sstream>
+
 
 namespace Aura {
 	class AURA_API MouseMovedEvent : public Event {

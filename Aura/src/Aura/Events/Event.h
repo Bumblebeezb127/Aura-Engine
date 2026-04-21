@@ -1,7 +1,7 @@
 #pragma once
-#include"../Core.h"
-#include <string>
-#include <functional>
+#include "arpch.h"
+#include"Aura/Core.h"
+
 
 namespace Aura
 {
@@ -29,12 +29,13 @@ namespace Aura
 	#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::type; }\
 								virtual EventType GetEventType() const override { return GetStaticType(); }\
 								virtual const char* GetName() const override { return #type; }
-#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
+	#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 	class AURA_API Event
 	{
 		friend class EventDispatcher;
 	public:
+		bool Handled = false;
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -43,11 +44,8 @@ namespace Aura
 		{
 			return GetCategoryFlags() & category;
 		}
-	protected:
 
-		bool m_Handled = false;
 	};
-
 
 	class EventDispatcher
 	{

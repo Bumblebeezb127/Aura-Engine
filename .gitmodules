@@ -1,3 +1,9 @@
 [submodule "Aura/vendor/spdlog"]
 	path = Aura/vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "Aura/vender/GLFW"]
+	path = Aura/vender/GLFW
+	url = https://github.com/TheCherno/glfw
+[submodule "Aura/vendor/GLFW"]
+	path = Aura/vendor/GLFW
+	url = git@github.com:TheCherno/glfw

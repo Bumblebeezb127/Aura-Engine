@@ -34,6 +34,11 @@
     <ClInclude Include="src\Aura\Log.h">
       <Filter>Aura</Filter>
     </ClInclude>
+    <ClInclude Include="src\arpch.h" />
+    <ClInclude Include="src\Aura\Window.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\Aura\Layer.h" />
+    <ClInclude Include="src\Aura\LayerSatck.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Aura\Application.cpp">
@@ -42,5 +47,9 @@
     <ClCompile Include="src\Aura\Log.cpp">
       <Filter>Aura</Filter>
     </ClCompile>
+    <ClCompile Include="src\arpch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="src\Aura\Layer.cpp" />
+    <ClCompile Include="src\Aura\LayerSatck.cpp" />
   </ItemGroup>
 </Project>
