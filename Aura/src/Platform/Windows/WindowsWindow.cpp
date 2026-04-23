@@ -4,6 +4,7 @@
 #include "Aura/Events/ApplicationEvent.h"
 #include "Aura/Events/MouseEvent.h"
 #include "Aura/Events/KeyEvent.h"
+#include <GLAD/glad.h>
 
 namespace Aura
 {
@@ -58,6 +59,10 @@ namespace Aura
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		AR_CORE_ASSERT(status, "Failed to initialize Glad!");
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -105,6 +110,14 @@ namespace Aura
 				}
 			});
 
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode) {
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				
+				KeyTypedEvent event(keycode);
+				data.EventCallback(event);
+
+
+			});
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);

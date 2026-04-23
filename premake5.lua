@@ -11,8 +11,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Aura/vendor/GLFW/include"
+IncludeDir["GLAD"] = "Aura/vendor/GLAD/include"
+IncludeDir["ImGui"] = "Aura/vendor/imgui"
+IncludeDir["glm"] = "Aura/vendor/glm"
 
 include "Aura/vendor/GLFW"
+include "Aura/vendor/GLAD"
+include "Aura/vendor/imgui"
 
 project "Aura"
 	location "Aura"
@@ -27,16 +32,23 @@ project "Aura"
 
 	files{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.h",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 	includedirs {
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links {
 		"GLFW",
+		"ImGui",
+		"GLAD",
 		"opengl32.lib"
 	}
 
@@ -47,7 +59,8 @@ project "Aura"
 		systemversion "latest"
 		defines {
 			"AR_PLATFORM_WINDOWS",
-			"AR_BUILD_DLL"
+			"AR_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
         postbuildcommands {
             -- 使用绝对路径，避免任何相对路径问题
@@ -91,7 +104,8 @@ project "Sandbox"
 
 	includedirs{
 		"Aura/vendor/spdlog/include",
-		"Aura/src"
+		"Aura/src",
+		"%{IncludeDir.glm}"
 	}
 	
 	links {
@@ -108,12 +122,15 @@ project "Sandbox"
 		}
 	filter "configurations:Debug"
 		defines "AR_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 	filter "configurations:Release"
 		defines "AR_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 	filter "configurations:Dist"
 		defines "AR_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter {"system:windows","configurations:Release"}

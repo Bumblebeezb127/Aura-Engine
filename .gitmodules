@@ -7,3 +7,9 @@
 [submodule "Aura/vendor/GLFW"]
 	path = Aura/vendor/GLFW
 	url = git@github.com:TheCherno/glfw
+[submodule "Aura/vendor/imgui"]
+	path = Aura/vendor/imgui
+	url = git@github.com:TheCherno/imgui.git
+[submodule "Aura/vendor/glm"]
+	path = Aura/vendor/glm
+	url = git@github.com:g-truc/glm.git
