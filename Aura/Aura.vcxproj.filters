@@ -552,6 +552,14 @@
     <ClInclude Include="vendor\glm\glm\simd\vector_relational.h">
       <Filter>vendor\glm\glm\simd</Filter>
     </ClInclude>
+    <ClInclude Include="src\Aura\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Aura\Renderer\Shader.h" />
+    <ClInclude Include="src\Aura\Renderer\Buffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Aura\Renderer\Renderer.h" />
+    <ClInclude Include="src\Aura\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Aura\Application.cpp">
@@ -581,5 +589,12 @@
     <ClCompile Include="src\arpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Aura\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Aura\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Aura\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Aura\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
   </ItemGroup>
 </Project>

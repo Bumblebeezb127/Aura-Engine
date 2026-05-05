@@ -5,7 +5,7 @@
 
 namespace Aura
 {
-	class AURA_API LayerSatck
+	class  LayerSatck
 	{
 	public:
 		LayerSatck();

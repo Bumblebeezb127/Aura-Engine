@@ -1,6 +1,5 @@
 #pragma once
-
-//各种平台的公共头文件
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <memory>
 #include <utility>

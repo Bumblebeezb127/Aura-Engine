@@ -1,10 +1,15 @@
 #pragma once
 #ifdef AR_PLATFORM_WINDOWS
+#if AR_DYNAMIC_LINK
 	#ifdef AR_BUILD_DLL
-		#define AURA_API __declspec(dllexport)
+		#define  __declspec(dllexport)
 	#else 
-		#define AURA_API __declspec(dllimport)
-	#endif // AR_BUILD_DLL
+		#define  __declspec(dllimport)
+	#endif 
+#else
+	#define AURA_API
+#endif
+
 #else
 	#error Aura only support Windows!
 #endif // 

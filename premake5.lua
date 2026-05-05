@@ -21,8 +21,11 @@ include "Aura/vendor/imgui"
 
 project "Aura"
 	location "Aura"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -53,46 +56,35 @@ project "Aura"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
-		-- systemversion "10.0.22621.0"
 		systemversion "latest"
+		buildoptions { "/utf-8" }
 		defines {
 			"AR_PLATFORM_WINDOWS",
 			"AR_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
-        postbuildcommands {
-            -- 使用绝对路径，避免任何相对路径问题
-            "{COPY} %{cfg.buildtarget.abspath} ../bin/" .. outputdir .. "/Sandbox/"
-        }
 
 
 	filter "configurations:Debug"
 		defines "AR_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 	filter "configurations:Release"
 		defines "AR_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 	filter "configurations:Dist"
 		defines "AR_DIST"
-		buildoptions "/MD"
-		optimize "On"
-
-	filter {"system:windows","configurations:Release"}
-		buildoptions "/utf-8" 
-	filter {"system:windows","configurations:Debug"}
-		buildoptions "/utf-8"
-	filter {"system:windows","configurations:Dist"}
-		buildoptions "/utf-8"
+		runtime "Release"
+		optimize "on"
 
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -105,6 +97,7 @@ project "Sandbox"
 	includedirs{
 		"Aura/vendor/spdlog/include",
 		"Aura/src",
+		"Aura/vendor",
 		"%{IncludeDir.glm}"
 	}
 	
@@ -113,32 +106,26 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
-		-- systemversion "10.0.22621.0"
 		systemversion "latest"
+		buildoptions { "/utf-8" }
+
 		defines {
 			"AR_PLATFORM_WINDOWS"
 		}
+
 	filter "configurations:Debug"
 		defines "AR_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 	filter "configurations:Release"
 		defines "AR_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 	filter "configurations:Dist"
 		defines "AR_DIST"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
-	filter {"system:windows","configurations:Release"}
-		buildoptions "/utf-8" 
-	filter {"system:windows","configurations:Debug"}
-		buildoptions "/utf-8"
-	filter {"system:windows","configurations:Dist"}
-		buildoptions "/utf-8"
 		
 
 

@@ -18,7 +18,7 @@ namespace Aura
 		}
 	};
 
-	class AURA_API Window {
+	class  Window {
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
 

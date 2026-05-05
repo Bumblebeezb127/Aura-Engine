@@ -8,7 +8,7 @@
 #include "spdlog/fmt/ostr.h"
 
 namespace Aura {
-	class AURA_API Log
+	class  Log
 	{
 	private:
 		static std::shared_ptr<spdlog::logger> s_CoreLogger;

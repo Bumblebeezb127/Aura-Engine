@@ -9,12 +9,14 @@
 #include "Aura/LayerSatck.h"
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
-
+#include "Aura/Renderer/Shader.h"
+#include "Aura/Renderer/Buffer.h"
+#include "Aura/Renderer/VertexArray.h"
 #include "Aura/ImGui/ImGuiLayer.h"
 
 namespace Aura {
 
-	class AURA_API Application
+	class  Application
 	{
 	public:
 		Application();
@@ -36,11 +38,19 @@ namespace Aura {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerSatck m_LayerStack;
+
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexBuffer> m_VertexBuffer;
+		std::shared_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<VertexArray> m_VertexArray;
+
+
+		std::shared_ptr<VertexArray> m_SquareVA;
 	private:
 		static Application* s_Instance;
 	};
 
-	//在客户端定义
+
 	Application* CreateApplication();
 }
 

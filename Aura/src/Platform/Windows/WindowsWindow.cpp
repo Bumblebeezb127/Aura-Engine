@@ -6,6 +6,8 @@
 #include "Aura/Events/KeyEvent.h"
 #include <GLAD/glad.h>
 
+#include "Platform/OpenGL/OpenGLContext.h"
+
 namespace Aura
 {
 	static bool s_GLFWInitialized = false;
@@ -38,7 +40,8 @@ namespace Aura
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Contex->SwapBuffers();
+
 	}
 
 	void WindowsWindow::Init(const WindowProps& props)
@@ -49,6 +52,7 @@ namespace Aura
 
 		AR_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
+
 		if (!s_GLFWInitialized)
 		{
 			int success = glfwInit();
@@ -58,10 +62,11 @@ namespace Aura
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
+		m_Contex = new OpenGLContext(m_Window);
 
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		AR_CORE_ASSERT(status, "Failed to initialize Glad!");
+
+		m_Contex->Init();
+
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);

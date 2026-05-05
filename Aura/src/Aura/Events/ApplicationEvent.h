@@ -6,7 +6,7 @@
 #include <sstream>
 
 namespace Aura {
-	class AURA_API ApplicationEvent : public Event {
+	class  ApplicationEvent : public Event {
 	public:
 		enum class Type {
 			WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
@@ -19,14 +19,14 @@ namespace Aura {
 		Type m_Type;
 	};
 
-	class AURA_API WindowCloseEvent : public Event {
+	class  WindowCloseEvent : public Event {
 	public:
 		WindowCloseEvent() {};
 		EVENT_CLASS_TYPE(WindowClose)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AURA_API WindowResizeEvent : public Event {
+	class  WindowResizeEvent : public Event {
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
 			: m_Width(width), m_Height(height) {
@@ -44,21 +44,21 @@ namespace Aura {
 		unsigned int m_Width, m_Height;
 	};
 
-	class AURA_API WindowFocusEvent : public ApplicationEvent {
+	class  WindowFocusEvent : public ApplicationEvent {
 	public:
 		WindowFocusEvent() : ApplicationEvent(Type::WindowFocus) {}
 		EVENT_CLASS_TYPE(WindowFocus)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AURA_API WindowLostFocusEvent : public ApplicationEvent {
+	class  WindowLostFocusEvent : public ApplicationEvent {
 	public:
 		WindowLostFocusEvent() : ApplicationEvent(Type::WindowLostFocus) {}
 		EVENT_CLASS_TYPE(WindowLostFocus)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AURA_API WindowMovedEvent : public ApplicationEvent {
+	class  WindowMovedEvent : public ApplicationEvent {
 	public:
 		WindowMovedEvent(int x, int y)
 			: ApplicationEvent(Type::WindowMoved), m_X(x), m_Y(y) {
@@ -76,20 +76,20 @@ namespace Aura {
 		int m_X, m_Y;
 	};
 
-	class AURA_API AppTickEvent : public ApplicationEvent {
+	class  AppTickEvent : public ApplicationEvent {
 	public:
 		AppTickEvent() : ApplicationEvent(Type::AppTick) {}
 		EVENT_CLASS_TYPE(AppTick)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AURA_API AppUpdateEvent : public ApplicationEvent {
+	class  AppUpdateEvent : public ApplicationEvent {
 	public:
 		AppUpdateEvent() : ApplicationEvent(Type::AppUpdate) {}
 		EVENT_CLASS_TYPE(AppUpdate)
 	};
 
-	class AURA_API AppRenderEvent : public ApplicationEvent {
+	class  AppRenderEvent : public ApplicationEvent {
 	public:
 		AppRenderEvent() : ApplicationEvent(Type::AppRender) {}
 		EVENT_CLASS_TYPE(AppRender)

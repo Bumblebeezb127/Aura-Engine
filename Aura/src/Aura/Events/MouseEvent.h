@@ -5,7 +5,7 @@
 
 
 namespace Aura {
-	class AURA_API MouseMovedEvent : public Event {
+	class  MouseMovedEvent : public Event {
 	public:
 		MouseMovedEvent(float x, float y)
 			: m_MouseX(x), m_MouseY(y) {}
@@ -25,7 +25,7 @@ namespace Aura {
 		float m_MouseX, m_MouseY;
 	};
 
-	class AURA_API MouseScrolledEvent : public Event {
+	class  MouseScrolledEvent : public Event {
 		public:
 		MouseScrolledEvent(float xOffset, float yOffset)
 			: m_XOffset(xOffset), m_YOffset(yOffset) {}
@@ -42,7 +42,7 @@ namespace Aura {
 		float m_XOffset, m_YOffset;
 	};
 
-	class AURA_API MouseButtonEvent : public Event {
+	class  MouseButtonEvent : public Event {
 		public:
 		inline int GetMouseButton() const { return m_Button; }
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput | EventCategoryMouseButton)
@@ -52,7 +52,7 @@ namespace Aura {
 		int m_Button;
 	};
 
-	class AURA_API MouseButtonPressedEvent : public MouseButtonEvent {
+	class  MouseButtonPressedEvent : public MouseButtonEvent {
 		public:
 		MouseButtonPressedEvent(int button)
 			: MouseButtonEvent(button) {}
@@ -63,7 +63,7 @@ namespace Aura {
 		}
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
-	class AURA_API MouseButtonReleasedEvent : public MouseButtonEvent {
+	class  MouseButtonReleasedEvent : public MouseButtonEvent {
 		public:
 		MouseButtonReleasedEvent(int button)
 			: MouseButtonEvent(button) {}

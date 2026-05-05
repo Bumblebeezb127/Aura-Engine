@@ -3,7 +3,7 @@
 
 
 namespace Aura {
-	class AURA_API KeyEvent : public Event {
+	class  KeyEvent : public Event {
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
@@ -14,7 +14,7 @@ namespace Aura {
 	};
 
 
-	class AURA_API KeyPressedEvent : public KeyEvent {
+	class  KeyPressedEvent : public KeyEvent {
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
 			: KeyEvent(keycode), m_RepeatCount(repeatCount) {}
@@ -30,7 +30,7 @@ namespace Aura {
 	};
 
 
-	class AURA_API KeyReleasedEvent : public KeyEvent {
+	class  KeyReleasedEvent : public KeyEvent {
 	public:
 		KeyReleasedEvent(int keycode)
 			: KeyEvent(keycode) {}
@@ -45,7 +45,7 @@ namespace Aura {
 	};
 
 
-	class AURA_API KeyTypedEvent : public KeyEvent {
+	class  KeyTypedEvent : public KeyEvent {
 	public:
 		KeyTypedEvent(int keycode)
 			: KeyEvent(keycode) {}
