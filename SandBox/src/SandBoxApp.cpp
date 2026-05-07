@@ -92,8 +92,9 @@ public:
 				color = vec4(v_Position*0.5+0.5,1.0);
 			}
 		)";
-
 		m_Shader.reset(Aura::Shader::Create(vertexSrc, fragmentSrc));
+
+
 		std::string squareVertexSrc = R"(
 			#version 430
 			layout(location = 0) in vec3 position;
@@ -115,39 +116,12 @@ public:
 				color = vec4(u_Color, 1.0);
 			}
 		)";
-
 		m_SquareShader.reset(Aura::Shader::Create(squareVertexSrc, squareFragmentSrc));
 
-		std::string textureVertexSrc = R"(
-			#version 430
-			layout(location = 0) in vec3 position;
-			layout(location = 1) in vec2 TexCoord;
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec2 v_TexCoord;
-			void main(){
-
-				v_TexCoord = TexCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(position, 1.0);
-			}
-		)";
-		std::string textureFragmentSrc = R"(
-			#version 430
-			layout(location = 0) out vec4 color;
-
-			uniform sampler2D u_Texture;
-
-			in vec2 v_TexCoord;
-
-			void main(){
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
-		m_TextureShader.reset(Aura::Shader::Create(textureVertexSrc, textureFragmentSrc));
+		m_TextureShader.reset(Aura::Shader::Create("assets/shaders/Texture.glsl"));
 		
 		m_Texture = Aura::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_LogoTexture = Aura::Texture2D::Create("assets/textures/ChernoLogo.png");
 		std::dynamic_pointer_cast<Aura::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<Aura::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 
@@ -223,7 +197,8 @@ public:
 
 		m_Texture->Bind();
 		Aura::Renderer::Submit(m_TextureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), m_SquarePosition));
-
+		m_LogoTexture->Bind();
+		Aura::Renderer::Submit(m_TextureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), m_SquarePosition));
 		//Trangle
 		//Aura::Renderer::Submit(m_Shader, m_VertexArray);
 
@@ -253,6 +228,7 @@ private:
 	Aura::Ref<Aura::VertexArray> m_SquareVA;
 
 	Aura::Ref<Aura::Texture2D> m_Texture;
+	Aura::Ref<Aura::Texture2D> m_LogoTexture;
 
 	Aura::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

@@ -7,6 +7,11 @@ namespace Aura {
 
 	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData();
 
+	void Renderer::Init() {
+		//AR_PROFILE_FUNCTION();
+		RenderCommand::Init();
+	}
+
 	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
 		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
