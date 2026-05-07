@@ -564,6 +564,7 @@
     <ClInclude Include="src\Aura\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Aura\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Aura\Core\Timestep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Aura\Application.cpp">
@@ -604,5 +605,6 @@
     <ClCompile Include="src\Aura\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Aura\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Aura\Core\Timestep.cpp" />
   </ItemGroup>
 </Project>

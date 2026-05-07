@@ -22,7 +22,8 @@ public:
 	ExampleLayer() :
 		Layer("Example"), 
 		m_Camera(-1.0f, 1.0f, -1.0f, 1.0f),
-		m_CameraPosition(0.0f, 0.0f, 0.0f)
+		m_CameraPosition(0.0f, 0.0f, 0.0f),
+		m_SquarePosition(0.0f, 0.0f, 0.0f)
 	{
 		m_VertexArray.reset(Aura::VertexArray::Create());
 
@@ -70,10 +71,11 @@ public:
 			#version 430
 			layout(location = 0) in vec3 position;
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 			out vec3 v_Position;
 			void main(){
 				v_Position = position;
-				gl_Position = u_ViewProjection * vec4(position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(position, 1.0);
 			}
 		)";
 		std::string fragmentSrc = R"(
@@ -89,26 +91,39 @@ public:
 
 	}
 
-	void OnUpdate() override {
+	void OnUpdate(Aura::Timestep timestep) override {
 		if (Aura::Input::IsKeyPressed(AR_KEY_LEFT)) {
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * timestep;
 		}
 		else if (Aura::Input::IsKeyPressed(AR_KEY_RIGHT)) {
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * timestep;
 		}
 		if (Aura::Input::IsKeyPressed(AR_KEY_UP)) {
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * timestep;
 		}
 		else if (Aura::Input::IsKeyPressed(AR_KEY_DOWN)) {
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * timestep;
 		}
 
 
 		if (Aura::Input::IsKeyPressed(AR_KEY_A)) {
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * timestep;
 		}
 		else if (Aura::Input::IsKeyPressed(AR_KEY_D)) {
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * timestep;
+		}
+
+		if (Aura::Input::IsKeyPressed(AR_KEY_J)) {
+			m_SquarePosition.x -= m_SquareMoveSpeed * timestep;
+		}
+		else if (Aura::Input::IsKeyPressed(AR_KEY_L)) {
+			m_SquarePosition.x += m_SquareMoveSpeed * timestep;
+		}
+		if (Aura::Input::IsKeyPressed(AR_KEY_I)) {
+			m_SquarePosition.y += m_SquareMoveSpeed * timestep;
+		}
+		else if (Aura::Input::IsKeyPressed(AR_KEY_K)) {
+			m_SquarePosition.y -= m_SquareMoveSpeed * timestep;
 		}
 
 		Aura::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
@@ -119,7 +134,9 @@ public:
 
 		Aura::Renderer::BeginScene(m_Camera);
 
-		Aura::Renderer::Submit(m_Shader, m_SquareVA);
+		glm::mat4 squareTransform = glm::translate(glm::mat4(1.0f), m_SquarePosition);
+
+		Aura::Renderer::Submit(m_Shader, m_SquareVA, squareTransform);
 		Aura::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Aura::Renderer::EndScene();
@@ -131,29 +148,11 @@ public:
 
 	void OnEvent(Aura::Event& event) override {
 		Aura::EventDispatcher dispatcher(event);
-		//dispatcher.Dispatch<Aura::KeyPressedEvent>(std::bind(&ExampleLayer::OnKeyPressed, this, std::placeholders::_1));
-		dispatcher.Dispatch<Aura::KeyPressedEvent>(AR_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEvent));
+		//dispatcher.Dispatch<Aura::KeyPressedEvent>(AR_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEvent));
 	}
 
 	bool OnKeyPressedEvent(Aura::KeyPressedEvent& event) {
-		//if (event.GetKeyCode() == Aura::Key::Escape) {
-		//	AR_CORE_INFO("Escape key is pressed!");
-		//}
 
-		if (event.GetKeyCode() == AR_KEY_LEFT) {
-			m_CameraPosition.x -= m_CameraMoveSpeed;
-		}
-		if (event.GetKeyCode() == AR_KEY_RIGHT) {
-			m_CameraPosition.x += m_CameraMoveSpeed;
-		}
-		if (event.GetKeyCode() == AR_KEY_UP) {
-			m_CameraPosition.y += m_CameraMoveSpeed;
-		}
-		if (event.GetKeyCode() == AR_KEY_DOWN) {
-			m_CameraPosition.y -= m_CameraMoveSpeed;
-		}
-
-		return false;
 	}
 private:
 	std::shared_ptr<Aura::Shader> m_Shader;
@@ -165,10 +164,13 @@ private:
 	Aura::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
 	
-	float m_CameraMoveSpeed = 0.1f;
+	float m_CameraMoveSpeed = 1.0f;
 	
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 0.1f;
+	float m_CameraRotationSpeed = 5.0f;
+
+	glm::vec3 m_SquarePosition;
+	float m_SquareMoveSpeed = 1.0f;
 };
 
 class Sandbox :public Aura::Application {

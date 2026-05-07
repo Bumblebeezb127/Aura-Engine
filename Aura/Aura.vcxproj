@@ -176,6 +176,7 @@
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\arpch.h" />
+    <ClInclude Include="src\Aura\Core\Timestep.h" />
     <ClInclude Include="vendor\glm\glm\detail\func_common.inl" />
     <ClInclude Include="vendor\glm\glm\detail\func_common_simd.inl" />
     <ClInclude Include="vendor\glm\glm\detail\func_exponential.inl" />
@@ -351,6 +352,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Aura\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Aura\Core\Timestep.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
