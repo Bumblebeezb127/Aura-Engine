@@ -14,6 +14,7 @@ IncludeDir["GLFW"] = "Aura/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Aura/vendor/GLAD/include"
 IncludeDir["ImGui"] = "Aura/vendor/imgui"
 IncludeDir["glm"] = "Aura/vendor/glm"
+IncludeDir["stb_image"] = "Aura/vendor/stb_image"
 
 include "Aura/vendor/GLFW"
 include "Aura/vendor/GLAD"
@@ -36,6 +37,8 @@ project "Aura"
 	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.h",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -45,7 +48,8 @@ project "Aura"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links {

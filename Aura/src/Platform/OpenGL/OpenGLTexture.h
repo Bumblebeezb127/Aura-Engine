@@ -1,0 +1,21 @@
+#pragma once
+
+#include "Aura/Renderer/Texture.h"
+
+namespace Aura
+{
+	class OpenGLTexture2D : public Texture2D
+	{
+	public:
+		OpenGLTexture2D(const std::string& path);
+		~OpenGLTexture2D();
+		virtual void Bind(uint32_t slot = 0) const override;
+		virtual uint32_t GetWidth() const override { return m_Width; }
+		virtual uint32_t GetHeight() const override { return m_Height; }
+	private:
+		std::string m_Path;
+		uint32_t m_RendererID;
+		uint32_t m_Width, m_Height;
+	};
+
+}

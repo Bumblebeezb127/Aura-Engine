@@ -16,6 +16,7 @@
 
 #include "Aura/Renderer/Buffer.h"
 #include "Aura/Renderer/Shader.h"
+#include "Aura/Renderer/Texture.h"
 #include "Aura/Renderer/VertexArray.h"
 
 #include "Aura/Renderer/OrthographicCamera.h"
