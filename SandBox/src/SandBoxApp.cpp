@@ -92,7 +92,7 @@ public:
 				color = vec4(v_Position*0.5+0.5,1.0);
 			}
 		)";
-		m_Shader.reset(Aura::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = Aura::Shader::Create("TrangleShader", vertexSrc, fragmentSrc);
 
 
 		std::string squareVertexSrc = R"(
@@ -116,9 +116,9 @@ public:
 				color = vec4(u_Color, 1.0);
 			}
 		)";
-		m_SquareShader.reset(Aura::Shader::Create(squareVertexSrc, squareFragmentSrc));
+		m_SquareShader = Aura::Shader::Create("SquareShader", squareVertexSrc, squareFragmentSrc);
 
-		m_TextureShader.reset(Aura::Shader::Create("assets/shaders/Texture.glsl"));
+		auto m_TextureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 		
 		m_Texture = Aura::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_LogoTexture = Aura::Texture2D::Create("assets/textures/ChernoLogo.png");
@@ -194,6 +194,7 @@ public:
 				Aura::Renderer::Submit(m_SquareShader, m_SquareVA, transform);
 			}
 		}
+		auto m_TextureShader = m_ShaderLibrary.Get("Texture");
 
 		m_Texture->Bind();
 		Aura::Renderer::Submit(m_TextureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), m_SquarePosition));
@@ -220,8 +221,10 @@ public:
 
 	}
 private:
+	Aura::ShaderLibrary m_ShaderLibrary;
+
 	Aura::Ref<Aura::Shader> m_Shader;
-	Aura::Ref<Aura::Shader> m_TextureShader;
+	//Aura::Ref<Aura::Shader> m_TextureShader;
 	Aura::Ref<Aura::Shader> m_SquareShader;
 
 	Aura::Ref<Aura::VertexArray> m_VertexArray;
