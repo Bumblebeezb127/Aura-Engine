@@ -12,6 +12,7 @@
 #include "Aura/Renderer/Shader.h"
 #include "Aura/Renderer/Buffer.h"
 #include "Aura/Renderer/VertexArray.h"
+#include "Aura/Renderer/OrthographicCamera.h"
 #include "Aura/ImGui/ImGuiLayer.h"
 
 namespace Aura {
@@ -39,13 +40,15 @@ namespace Aura {
 		bool m_Running = true;
 		LayerSatck m_LayerStack;
 
-		std::shared_ptr<Shader> m_Shader;
+		/*std::shared_ptr<Shader> m_Shader;
 		std::shared_ptr<VertexBuffer> m_VertexBuffer;
 		std::shared_ptr<IndexBuffer> m_IndexBuffer;
 		std::shared_ptr<VertexArray> m_VertexArray;
 
 
 		std::shared_ptr<VertexArray> m_SquareVA;
+		
+		OrthographicCamera m_Camera;*/
 	private:
 		static Application* s_Instance;
 	};
