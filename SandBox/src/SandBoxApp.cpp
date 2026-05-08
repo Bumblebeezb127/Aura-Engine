@@ -26,8 +26,7 @@ class ExampleLayer :public Aura::Layer {
 public:
 	ExampleLayer() :
 		Layer("Example"), 
-		m_Camera(-1.6f/0.9f, 1.6f/0.9f, -1.0f, 1.0f),
-		m_CameraPosition(0.0f, 0.0f, 0.0f),
+		m_CameraController(1280.0f / 720.0f, true),
 		m_SquarePosition(0.0f, 0.0f, 0.0f)
 	{
 		m_VertexArray.reset(Aura::VertexArray::Create());
@@ -128,59 +127,18 @@ public:
 	}
 
 	void OnUpdate(Aura::Timestep timestep) override {
-		if (Aura::Input::IsKeyPressed(AR_KEY_LEFT)) {
-			m_CameraPosition.x -= m_CameraMoveSpeed * timestep;
-		}
-		else if (Aura::Input::IsKeyPressed(AR_KEY_RIGHT)) {
-			m_CameraPosition.x += m_CameraMoveSpeed * timestep;
-		}
-		if (Aura::Input::IsKeyPressed(AR_KEY_UP)) {
-			m_CameraPosition.y += m_CameraMoveSpeed * timestep;
-		}
-		else if (Aura::Input::IsKeyPressed(AR_KEY_DOWN)) {
-			m_CameraPosition.y -= m_CameraMoveSpeed * timestep;
-		}
 
-
-		if (Aura::Input::IsKeyPressed(AR_KEY_A)) {
-			m_CameraRotation += m_CameraRotationSpeed * timestep;
-		}
-		else if (Aura::Input::IsKeyPressed(AR_KEY_D)) {
-			m_CameraRotation -= m_CameraRotationSpeed * timestep;
-		}
-
-		if (Aura::Input::IsKeyPressed(AR_KEY_J)) {
-			m_SquarePosition.x -= m_SquareMoveSpeed * timestep;
-		}
-		else if (Aura::Input::IsKeyPressed(AR_KEY_L)) {
-			m_SquarePosition.x += m_SquareMoveSpeed * timestep;
-		}
-		if (Aura::Input::IsKeyPressed(AR_KEY_I)) {
-			m_SquarePosition.y += m_SquareMoveSpeed * timestep;
-		}
-		else if (Aura::Input::IsKeyPressed(AR_KEY_K)) {
-			m_SquarePosition.y -= m_SquareMoveSpeed * timestep;
-		}
+		m_CameraController.OnUpdate(timestep);
 
 		Aura::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Aura::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
 
 		//==================================draw===========================================
-		Aura::Renderer::BeginScene(m_Camera);
+		Aura::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		//glm::vec4 redColor(0.8f, 0.2f, 0.3f, 1.0f);
-		//glm::vec4 blueColor(0.2f, 0.3f, 0.8f, 1.0f);
-
-		//Aura::MaterialRef material = new Aura::Material(m_SquareShader);
-		//Aura::MaterialInstanceRef mi = new Aura::MaterialInstance(material);
-
-		//mi->Set("u_Color", redColor);
-		//squareMesh->SetMaterial(mi);
 
 		std::dynamic_pointer_cast<Aura::OpenGLShader>(m_SquareShader)->Bind();
 		std::dynamic_pointer_cast<Aura::OpenGLShader>(m_SquareShader)->UploadUniformFloat3("u_Color", m_SquareColor);
@@ -213,8 +171,7 @@ public:
 	}
 
 	void OnEvent(Aura::Event& event) override {
-		Aura::EventDispatcher dispatcher(event);
-		//dispatcher.Dispatch<Aura::KeyPressedEvent>(AR_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEvent));
+		m_CameraController.OnEvent(event);
 	}
 
 	bool OnKeyPressedEvent(Aura::KeyPressedEvent& event) {
@@ -233,13 +190,7 @@ private:
 	Aura::Ref<Aura::Texture2D> m_Texture;
 	Aura::Ref<Aura::Texture2D> m_LogoTexture;
 
-	Aura::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	
-	float m_CameraMoveSpeed = 10.0f;
-	
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+	Aura::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquarePosition;
 	float m_SquareMoveSpeed = 1.0f;

@@ -10,6 +10,8 @@
 #include "Aura/KeyCode.h"
 #include "Aura/MouseButtonCodes.h"
 
+#include "Aura/OrthographicCameraController.h"
+
 //================================Renderer================================
 #include "Aura/Renderer/Renderer.h"
 #include "Aura/Renderer/RenderCommand.h"

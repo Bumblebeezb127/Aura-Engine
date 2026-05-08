@@ -146,6 +146,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Aura\OrthographicCameraController.h" />
     <ClInclude Include="src\Aura.h" />
     <ClInclude Include="src\Aura\Application.h" />
     <ClInclude Include="src\Aura\Core.h" />
@@ -334,6 +335,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Aura\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Aura\Application.cpp" />
     <ClCompile Include="src\Aura\Core\Timestep.cpp" />
     <ClCompile Include="src\Aura\ImGui\ImGuiBuild.cpp" />
