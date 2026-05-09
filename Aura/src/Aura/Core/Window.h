@@ -1,7 +1,7 @@
 #pragma once
 #include "arpch.h"
 
-#include "Aura/Core.h"
+#include "Aura/Core/Core.h"
 #include "Aura/Events/Event.h"
 
 namespace Aura

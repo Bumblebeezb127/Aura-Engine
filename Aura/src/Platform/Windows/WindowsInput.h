@@ -1,5 +1,5 @@
 #pragma once
-#include "Aura/Input.h"
+#include "Aura/Core/Input.h"
 
 namespace Aura {
 

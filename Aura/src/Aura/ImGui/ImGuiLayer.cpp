@@ -7,7 +7,7 @@
 #include "backends/imgui_impl_glfw.h"
 
 
-#include "Aura/Application.h"
+#include "Aura/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>

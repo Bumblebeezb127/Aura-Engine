@@ -6,9 +6,9 @@
 #include"Core.h"
 
 #include "Window.h"
-#include "Aura/LayerSatck.h"
-#include "Events/Event.h"
-#include "Events/ApplicationEvent.h"
+#include "Aura/Core/LayerSatck.h"
+#include "Aura/Events/Event.h"
+#include "Aura/Events/ApplicationEvent.h"
 #include "Aura/Renderer/Shader.h"
 #include "Aura/Renderer/Buffer.h"
 #include "Aura/Renderer/VertexArray.h"
@@ -36,10 +36,12 @@ namespace Aura {
 		inline Window& GetWindow() { return *m_Window; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
+		bool m_Minimized = false;
 		LayerSatck m_LayerStack;
 
 		Timestep m_Timestep;

@@ -1,6 +1,6 @@
 #pragma once
 #include "arpch.h"
-#include"Aura/Core.h"
+#include"Aura/Core/Core.h"
 
 
 namespace Aura

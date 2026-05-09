@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Aura/Application.h"
-#include "Aura/Layer.h"
-#include "Aura/Log.h"
+#include "Aura/Core/Application.h"
+#include "Aura/Core/Layer.h"
+#include "Aura/Core/Core.h"
 
 #include "Aura/Core/Timestep.h"
 
-#include "Aura/Input.h"
-#include "Aura/KeyCode.h"
-#include "Aura/MouseButtonCodes.h"
+#include "Aura/Core/Input.h"
+#include "Aura/Core/KeyCode.h"
+#include "Aura/Core/MouseButtonCodes.h"
 
-#include "Aura/OrthographicCameraController.h"
+#include "Aura/Renderer/OrthographicCameraController.h"
 
 //================================Renderer================================
 #include "Aura/Renderer/Renderer.h"
@@ -24,5 +24,5 @@
 #include "Aura/Renderer/OrthographicCamera.h"
 
 //================================EntryPoint================================
-#include"Aura/EntryPoint.h"
+//#include"Aura/Core/EntryPoint.h"
 #include "Aura/ImGui/ImGuiLayer.h"

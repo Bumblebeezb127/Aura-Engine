@@ -1,6 +1,6 @@
 #include "arpch.h"
 #include "WindowsInput.h"
-#include "Aura/Application.h"
+#include "Aura/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Aura {

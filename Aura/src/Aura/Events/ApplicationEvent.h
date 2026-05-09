@@ -1,8 +1,7 @@
 #pragma once
 
-#include "../Core.h"
-#include "Event.h"
-//#include "../Delegates/Delegate.h"
+#include "Aura/Core/Core.h"
+#include "Aura/Events/Event.h"
 #include <sstream>
 
 namespace Aura {

@@ -1,6 +1,6 @@
 #include "arpch.h"
 #include "OrthographicCameraController.h"
-#include "Aura/KeyCode.h"
+#include "Aura/Core/KeyCode.h"
 
 namespace Aura
 {

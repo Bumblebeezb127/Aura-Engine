@@ -1,15 +1,22 @@
 #include <Aura.h>
+#include <Aura/Core/EntryPoint.h>
+
+
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/vec4.hpp> // glm::vec4
 #include <glm/mat4x4.hpp> // glm::mat4
-#include <glm/ext/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale
 #include <glm/ext/matrix_clip_space.hpp> // glm::perspective
 #include <glm/ext/scalar_constants.hpp> 
-#include <glm/gtc/type_ptr.hpp> 
+
 
 #include "Platform/OpenGL/OpenGLShader.h"
-
 #include "imgui/imgui.h"
+#include <glm/ext/matrix_transform.hpp> 
+#include <glm/gtc/type_ptr.hpp> 
+
+
+
+#include "Sandbox2D.h"
 
 glm::mat4 camera(float Translate, glm::vec2 const& Rotate)
 {
@@ -29,7 +36,7 @@ public:
 		m_CameraController(1280.0f / 720.0f, true),
 		m_SquarePosition(0.0f, 0.0f, 0.0f)
 	{
-		m_VertexArray.reset(Aura::VertexArray::Create());
+		m_VertexArray = Aura::VertexArray::Create();
 
 		float vertices[3 * 3] = {
 			-0.5f, -0.5f, 0.0f,
@@ -51,7 +58,7 @@ public:
 		m_IndexBuffer.reset(Aura::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 		//==================================square===========================
-		m_SquareVA.reset(Aura::VertexArray::Create());
+		m_SquareVA = Aura::VertexArray::Create();
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
 			 0.5f, -0.5f, 0.0f,	1.0f, 0.0f,
@@ -128,6 +135,15 @@ public:
 
 	void OnUpdate(Aura::Timestep timestep) override {
 
+		if (Aura::Input::IsKeyPressed(AR_KEY_LEFT))
+			m_SquarePosition.x -= m_SquareMoveSpeed * timestep;
+		if (Aura::Input::IsKeyPressed(AR_KEY_RIGHT))
+			m_SquarePosition.x += m_SquareMoveSpeed * timestep;
+		if (Aura::Input::IsKeyPressed(AR_KEY_UP))
+			m_SquarePosition.y += m_SquareMoveSpeed * timestep;
+		if (Aura::Input::IsKeyPressed(AR_KEY_DOWN))
+			m_SquarePosition.y -= m_SquareMoveSpeed * timestep;
+
 		m_CameraController.OnUpdate(timestep);
 
 		Aura::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
@@ -172,6 +188,11 @@ public:
 
 	void OnEvent(Aura::Event& event) override {
 		m_CameraController.OnEvent(event);
+
+		if(event.GetEventType() == Aura::EventType::KeyPressed)
+		{
+
+		}
 	}
 
 	bool OnKeyPressedEvent(Aura::KeyPressedEvent& event) {
@@ -201,7 +222,8 @@ private:
 class Sandbox :public Aura::Application {
 public:
 	Sandbox() {
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 };
 

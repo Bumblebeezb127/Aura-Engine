@@ -146,23 +146,23 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Aura\OrthographicCameraController.h" />
     <ClInclude Include="src\Aura.h" />
-    <ClInclude Include="src\Aura\Application.h" />
-    <ClInclude Include="src\Aura\Core.h" />
+    <ClInclude Include="src\Aura\Core\Application.h" />
+    <ClInclude Include="src\Aura\Core\Core.h" />
     <ClInclude Include="src\Aura\Core\Timestep.h" />
-    <ClInclude Include="src\Aura\EntryPoint.h" />
+    <ClInclude Include="src\Aura\Core\EntryPoint.h" />
     <ClInclude Include="src\Aura\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Aura\Events\Event.h" />
     <ClInclude Include="src\Aura\Events\KeyEvent.h" />
     <ClInclude Include="src\Aura\Events\MouseEvent.h" />
     <ClInclude Include="src\Aura\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Aura\Input.h" />
-    <ClInclude Include="src\Aura\KeyCode.h" />
-    <ClInclude Include="src\Aura\Layer.h" />
-    <ClInclude Include="src\Aura\LayerSatck.h" />
-    <ClInclude Include="src\Aura\Log.h" />
-    <ClInclude Include="src\Aura\MouseButtonCodes.h" />
+    <ClInclude Include="src\Aura\Core\Input.h" />
+    <ClInclude Include="src\Aura\Core\KeyCode.h" />
+    <ClInclude Include="src\Aura\Core\Layer.h" />
+    <ClInclude Include="src\Aura\Core\LayerSatck.h" />
+    <ClInclude Include="src\Aura\Core\Log.h" />
+    <ClInclude Include="src\Aura\Core\MouseButtonCodes.h" />
+    <ClInclude Include="src\Aura\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Aura\Renderer\Buffer.h" />
     <ClInclude Include="src\Aura\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Aura\Renderer\OrthographicCamera.h" />
@@ -172,7 +172,7 @@
     <ClInclude Include="src\Aura\Renderer\Shader.h" />
     <ClInclude Include="src\Aura\Renderer\Texture.h" />
     <ClInclude Include="src\Aura\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Aura\Window.h" />
+    <ClInclude Include="src\Aura\Core\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -335,14 +335,14 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Aura\OrthographicCameraController.cpp" />
-    <ClCompile Include="src\Aura\Application.cpp" />
+    <ClCompile Include="src\Aura\Core\Application.cpp" />
     <ClCompile Include="src\Aura\Core\Timestep.cpp" />
     <ClCompile Include="src\Aura\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Aura\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Aura\Layer.cpp" />
-    <ClCompile Include="src\Aura\LayerSatck.cpp" />
-    <ClCompile Include="src\Aura\Log.cpp" />
+    <ClCompile Include="src\Aura\Core\Layer.cpp" />
+    <ClCompile Include="src\Aura\Core\LayerSatck.cpp" />
+    <ClCompile Include="src\Aura\Core\Log.cpp" />
+    <ClCompile Include="src\Aura\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Aura\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Aura\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Aura\Renderer\RenderCommand.cpp" />

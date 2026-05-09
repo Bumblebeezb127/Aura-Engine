@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Aura/Core.h"
+#include "Aura/Core/Core.h"
 #include "Aura/Events/Event.h"
 #include "Aura/Core/Timestep.h"
 

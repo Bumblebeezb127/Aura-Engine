@@ -4,7 +4,7 @@
 #include "Aura/Events/MouseEvent.h"
 #include "Aura/Events/ApplicationEvent.h"
 #include "Aura/Renderer/OrthographicCamera.h"
-#include "Aura/Input.h"
+#include "Aura/Core/Input.h"
 
 namespace Aura
 {
@@ -16,6 +16,10 @@ namespace Aura
 		void OnEvent(Event& e);
 		OrthographicCamera& GetCamera() { return m_Camera; }
 		const OrthographicCamera& GetCamera() const { return m_Camera; }
+		
+		float GetZoomLevel() const { return m_ZoomLevel; }
+		void SetZoomLevel(float level) { m_ZoomLevel = level; }
+
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& e);
 		bool OnWindowResized(WindowResizeEvent& e);

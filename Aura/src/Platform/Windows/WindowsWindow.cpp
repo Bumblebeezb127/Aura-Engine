@@ -79,6 +79,7 @@ namespace Aura
 				data.Height = height;
 
 				WindowResizeEvent event(width, height);
+				//AR_CORE_WARN("Window resized: {0}, {1}", width, height);
 				data.EventCallback(event);
 			});
 

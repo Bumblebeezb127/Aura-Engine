@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Aura/Core.h"
+#include "Aura/Core/Core.h"
 
 namespace Aura {
 	class  Input
