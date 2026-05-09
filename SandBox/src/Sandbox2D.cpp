@@ -13,31 +13,7 @@ Sandbox2D::Sandbox2D():
 
 void Sandbox2D::OnAttach()
 {
-	//==================================square===========================
-	m_SquareVA = Aura::VertexArray::Create();
-	float squareVertices[3 * 4] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.5f,  0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f
-	};
-
-	Aura::Ref<Aura::VertexBuffer> squareVB;
-	squareVB.reset(Aura::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-	squareVB->SetLayout({
-		{ Aura::ShaderDataType::Float3, "position" }
-		});
-	m_SquareVA->AddVertexBuffer(squareVB);
-
-	uint32_t squareIndices[6] = { 0,1,2, 2,3,0 };
-	Aura::Ref<Aura::IndexBuffer> squareIB;
-	squareIB.reset(Aura::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
-	m_SquareVA->SetIndexBuffer(squareIB);
-
-	m_FlatColorShader = Aura::Shader::Create("assets/shaders/FlatColor.glsl");
-
-
-
+	m_CheckerboardTexture = Aura::Texture2D::Create("assets/textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach()
@@ -60,17 +36,12 @@ void Sandbox2D::OnUpdate(Aura::Timestep timestep)
 
 
 	//==================================draw===========================================
-	Aura::Renderer::BeginScene(m_CameraController.GetCamera());
+	Aura::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	Aura::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+	Aura::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
+	Aura::Renderer2D::DrawQuad({ 0.0f, 0.0f , -0.1f}, { 10.0f, 10.0f }, m_CheckerboardTexture);
 
-	std::dynamic_pointer_cast<Aura::OpenGLShader>(m_FlatColorShader)->Bind();
-	std::dynamic_pointer_cast<Aura::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
-
-	m_FlatColorShader->Bind();
-	Aura::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
-
-
-	Aura::Renderer::EndScene();
+	Aura::Renderer2D::EndScene();
 	//==================================end-draw=======================================
 }
 

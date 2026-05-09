@@ -2,6 +2,7 @@
 #include "Renderer.h"
 
 #include "Platform/OpenGL/OpenGLShader.h"
+#include "Renderer2D.h"
 
 namespace Aura {
 
@@ -10,6 +11,7 @@ namespace Aura {
 	void Renderer::Init() {
 		//AR_PROFILE_FUNCTION();
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 	void Renderer::OnWindowResize(unsigned int width, unsigned int height)

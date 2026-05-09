@@ -61,16 +61,37 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Aura\Core\Application.h">
-      <Filter>src\Aura</Filter>
+      <Filter>src\Aura\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Aura\Core\Core.h">
-      <Filter>src\Aura</Filter>
+      <Filter>src\Aura\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aura\Core\EntryPoint.h">
+      <Filter>src\Aura\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aura\Core\Input.h">
+      <Filter>src\Aura\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aura\Core\KeyCode.h">
+      <Filter>src\Aura\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aura\Core\Layer.h">
+      <Filter>src\Aura\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aura\Core\LayerSatck.h">
+      <Filter>src\Aura\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aura\Core\Log.h">
+      <Filter>src\Aura\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aura\Core\MouseButtonCodes.h">
+      <Filter>src\Aura\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Aura\Core\Timestep.h">
       <Filter>src\Aura\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Aura\Core\EntryPoint.h">
-      <Filter>src\Aura</Filter>
+    <ClInclude Include="src\Aura\Core\Window.h">
+      <Filter>src\Aura\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Aura\Events\ApplicationEvent.h">
       <Filter>src\Aura\Events</Filter>
@@ -87,27 +108,6 @@
     <ClInclude Include="src\Aura\ImGui\ImGuiLayer.h">
       <Filter>src\Aura\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Aura\Core\Input.h">
-      <Filter>src\Aura</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Aura\Core\KeyCode.h">
-      <Filter>src\Aura</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Aura\Core\Layer.h">
-      <Filter>src\Aura</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Aura\Core\LayerSatck.h">
-      <Filter>src\Aura</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Aura\Core\Log.h">
-      <Filter>src\Aura</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Aura\Core\MouseButtonCodes.h">
-      <Filter>src\Aura</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Aura\Renderer\OrthographicCameraController.h">
-      <Filter>src\Aura</Filter>
-    </ClInclude>
     <ClInclude Include="src\Aura\Renderer\Buffer.h">
       <Filter>src\Aura\Renderer</Filter>
     </ClInclude>
@@ -117,10 +117,16 @@
     <ClInclude Include="src\Aura\Renderer\OrthographicCamera.h">
       <Filter>src\Aura\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Aura\Renderer\OrthographicCameraController.h">
+      <Filter>src\Aura\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Aura\Renderer\RenderCommand.h">
       <Filter>src\Aura\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Aura\Renderer\Renderer.h">
+      <Filter>src\Aura\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aura\Renderer\Renderer2D.h">
       <Filter>src\Aura\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Aura\Renderer\RendererAPI.h">
@@ -134,9 +140,6 @@
     </ClInclude>
     <ClInclude Include="src\Aura\Renderer\VertexArray.h">
       <Filter>src\Aura\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Aura\Core\Window.h">
-      <Filter>src\Aura</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -621,7 +624,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Aura\Core\Application.cpp">
-      <Filter>src\Aura</Filter>
+      <Filter>src\Aura\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aura\Core\Layer.cpp">
+      <Filter>src\Aura\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aura\Core\LayerSatck.cpp">
+      <Filter>src\Aura\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aura\Core\Log.cpp">
+      <Filter>src\Aura\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Aura\Core\Timestep.cpp">
       <Filter>src\Aura\Core</Filter>
@@ -632,28 +644,22 @@
     <ClCompile Include="src\Aura\ImGui\ImGuiLayer.cpp">
       <Filter>src\Aura\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Aura\Core\Layer.cpp">
-      <Filter>src\Aura</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Aura\Core\LayerSatck.cpp">
-      <Filter>src\Aura</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Aura\Core\Log.cpp">
-      <Filter>src\Aura</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Aura\Renderer\OrthographicCameraController.cpp">
-      <Filter>src\Aura</Filter>
-    </ClCompile>
     <ClCompile Include="src\Aura\Renderer\Buffer.cpp">
       <Filter>src\Aura\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Aura\Renderer\OrthographicCamera.cpp">
       <Filter>src\Aura\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Aura\Renderer\OrthographicCameraController.cpp">
+      <Filter>src\Aura\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Aura\Renderer\RenderCommand.cpp">
       <Filter>src\Aura\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Aura\Renderer\Renderer.cpp">
+      <Filter>src\Aura\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aura\Renderer\Renderer2D.cpp">
       <Filter>src\Aura\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Aura\Renderer\RendererAPI.cpp">

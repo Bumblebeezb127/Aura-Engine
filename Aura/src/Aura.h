@@ -14,6 +14,7 @@
 
 //================================Renderer================================
 #include "Aura/Renderer/Renderer.h"
+#include "Aura/Renderer/Renderer2D.h"
 #include "Aura/Renderer/RenderCommand.h"
 
 #include "Aura/Renderer/Buffer.h"
