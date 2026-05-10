@@ -158,6 +158,7 @@
     <ClInclude Include="src\Aura\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Aura\Core\Timestep.h" />
     <ClInclude Include="src\Aura\Core\Window.h" />
+    <ClInclude Include="src\Aura\Debug\Instrumentor.h" />
     <ClInclude Include="src\Aura\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Aura\Events\Event.h" />
     <ClInclude Include="src\Aura\Events\KeyEvent.h" />

@@ -9,11 +9,15 @@ namespace Aura {
 	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData();
 
 	void Renderer::Init() {
-		//AR_PROFILE_FUNCTION();
+		AR_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}
-
+	void Renderer::Shutdown()
+	{
+		Renderer2D::Shutdown();
+	}
 	void Renderer::OnWindowResize(unsigned int width, unsigned int height)
 	{
 		RenderCommand::SetViewport(0, 0, width, height);

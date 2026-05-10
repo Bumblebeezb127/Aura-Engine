@@ -24,21 +24,28 @@ namespace Aura
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
+		AR_PROFILE_FUNCTION();
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		AR_PROFILE_FUNCTION();
+
 		Shutdown();
 	}
 
 	void WindowsWindow::Shutdown()
 	{
+		AR_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(m_Window);
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
+		AR_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Contex->SwapBuffers();
 
@@ -46,6 +53,8 @@ namespace Aura
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
+		AR_PROFILE_FUNCTION();
+
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
@@ -55,13 +64,18 @@ namespace Aura
 
 		if (!s_GLFWInitialized)
 		{
+			AR_PROFILE_SCOPE("glfwInit");
+
 			int success = glfwInit();
 			AR_CORE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		{
+			AR_PROFILE_SCOPE("glfwCreateWindow");
+			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		}
 		m_Contex = new OpenGLContext(m_Window);
 
 
@@ -161,6 +175,8 @@ namespace Aura
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
+		AR_PROFILE_FUNCTION();
+
 		if (enabled)
 			glfwSwapInterval(1);
 		else

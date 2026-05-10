@@ -15,6 +15,7 @@
 #include <unordered_set>
 
 #include "Aura/Core/Log.h"
+#include "Aura/Debug/Instrumentor.h"
 
 #ifdef AR_PLATFORM_WINDOWS
 	#include<Windows.h>

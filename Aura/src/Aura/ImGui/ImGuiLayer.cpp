@@ -24,6 +24,8 @@ namespace Aura
 
 	void ImGuiLayer::OnAttach()
 	{
+		AR_PROFILE_FUNCTION();
+
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -60,6 +62,8 @@ namespace Aura
 
 	void ImGuiLayer::OnDetach()
 	{
+		AR_PROFILE_FUNCTION();
+
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
@@ -67,6 +71,7 @@ namespace Aura
 
 	void ImGuiLayer::Begin()
 	{
+		AR_PROFILE_FUNCTION();
 
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
@@ -75,6 +80,7 @@ namespace Aura
 
 	void ImGuiLayer::End()
 	{
+		AR_PROFILE_FUNCTION();
 
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
@@ -94,6 +100,8 @@ namespace Aura
 	}
 
 	void ImGuiLayer::OnImGuiRender() {
+		AR_PROFILE_FUNCTION();
+
 		static bool show = true;
 		ImGui::ShowDemoWindow(&show);
 	}

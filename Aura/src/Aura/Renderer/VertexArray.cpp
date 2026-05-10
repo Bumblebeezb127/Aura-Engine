@@ -8,6 +8,8 @@ namespace Aura
 {
 	Ref<VertexArray> VertexArray::Create()
 	{
+		//AR_PROFILE_FUNCTION();
+
 		switch(Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:    AR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;

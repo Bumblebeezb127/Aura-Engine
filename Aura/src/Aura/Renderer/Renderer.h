@@ -7,6 +7,7 @@ namespace Aura {
 	class Renderer {
 	public:
 		static void Init();
+		static void Shutdown();
 		static void OnWindowResize(unsigned int width, unsigned int height);
 
 		static void BeginScene(OrthographicCamera& camera);

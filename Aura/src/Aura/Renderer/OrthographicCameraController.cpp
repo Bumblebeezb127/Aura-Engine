@@ -13,14 +13,17 @@ namespace Aura
 	}
 	void OrthographicCameraController::OnUpdate(Timestep ts)
 	{
+		AR_PROFILE_FUNCTION();
+
 		if (Input::IsKeyPressed(AR_KEY_A))
 			m_CameraPosition.x -= m_CameraTranslationSpeed * ts;
 		if (Input::IsKeyPressed(AR_KEY_D))
 			m_CameraPosition.x += m_CameraTranslationSpeed * ts;
 		if (Input::IsKeyPressed(AR_KEY_W))
 			m_CameraPosition.y += m_CameraTranslationSpeed * ts;
-		if (Input::IsKeyPressed(AR_KEY_S))
-			m_CameraPosition.y -= m_CameraTranslationSpeed * ts;
+		if (Input::IsKeyPressed(AR_KEY_S)) {
+			m_CameraPosition.y -= m_CameraTranslationSpeed * ts;	
+		}
 		if (m_Rotation)
 		{
 			if (Input::IsKeyPressed(AR_KEY_Q))
@@ -35,18 +38,24 @@ namespace Aura
 	}
 	void OrthographicCameraController::OnEvent(Event& e)
 	{
+		AR_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<MouseScrolledEvent>(AR_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
 		dispatcher.Dispatch<WindowResizeEvent>(AR_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
 	}
 	bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
 	{
+		AR_PROFILE_FUNCTION();
+
 		m_ZoomLevel -= e.GetYOffset() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 		return false;
 	}
 	bool OrthographicCameraController::OnWindowResized(WindowResizeEvent& e) {
+		AR_PROFILE_FUNCTION();
+		
 		m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 		return false;
