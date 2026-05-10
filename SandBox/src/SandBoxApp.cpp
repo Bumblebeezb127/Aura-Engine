@@ -45,7 +45,7 @@ public:
 		};
 
 		Aura::Ref<Aura::VertexBuffer> m_VertexBuffer;
-		m_VertexBuffer.reset(Aura::VertexBuffer::Create(vertices, sizeof(vertices)));
+		m_VertexBuffer = Aura::VertexBuffer::Create(vertices, sizeof(vertices));
 		Aura::BufferLayout layout = {
 			{Aura::ShaderDataType::Float3, "position"}
 		};
@@ -55,7 +55,7 @@ public:
 
 		uint32_t indices[3] = { 0,1,2 };
 		Aura::Ref<Aura::IndexBuffer> m_IndexBuffer;
-		m_IndexBuffer.reset(Aura::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		m_IndexBuffer = Aura::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 		//==================================square===========================
 		m_SquareVA = Aura::VertexArray::Create();
@@ -67,7 +67,7 @@ public:
 		};
 
 		Aura::Ref<Aura::VertexBuffer> squareVB;
-		squareVB.reset(Aura::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB = Aura::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVB->SetLayout({
 			{ Aura::ShaderDataType::Float3, "position" },
 			{ Aura::ShaderDataType::Float2, "texCoord" }
@@ -76,7 +76,7 @@ public:
 
 		uint32_t squareIndices[6] = { 0,1,2, 2,3,0 };
 		Aura::Ref<Aura::IndexBuffer> squareIB;
-		squareIB.reset(Aura::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		squareIB = Aura::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string vertexSrc = R"(

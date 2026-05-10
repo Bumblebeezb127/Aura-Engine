@@ -186,6 +186,8 @@ namespace Aura {
 
 		glUseProgram(0);
 	}
+
+	//========================================Set Uniforms========================================
 	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
 	{
 		AR_PROFILE_FUNCTION();
@@ -228,6 +230,14 @@ namespace Aura {
 
 		UploadUniformInt(name, value);
 	}
+	void OpenGLShader::SetIntArray(const std::string& name, int* values, uint32_t count)
+	{
+		AR_PROFILE_FUNCTION();
+
+		UploadUniformIntArray(name, values, count);
+	}
+
+	//========================================Upload Uniforms========================================
 	void OpenGLShader::UploadUniformMat3(const std::string& name, const glm::mat3& matrix)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
@@ -262,5 +272,10 @@ namespace Aura {
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform1i(location, value);
+	}
+	void OpenGLShader::UploadUniformIntArray(const std::string& name, int* values, uint32_t count)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1iv(location, count, values);
 	}
 }
